@@ -11,4 +11,4 @@ from django.db.models import Q  # Complex queries
 
 
 def home(request):
-    return render(request, "hello_world\\templates\\home.html")
+    return render(request, "home.html")
