@@ -29,6 +29,10 @@ DEBUG = config("DEBUG", default=True)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
+
+# Chave API do gemini:
+GENAI_API_KEY = config('GENAI_API_KEY')
+
 if 'CODESPACE_NAME' in os.environ:
     codespace_name = config("CODESPACE_NAME")
     codespace_domain = config("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_browser_reload",
+    "brainstorming"
 ]
 
 MIDDLEWARE = [

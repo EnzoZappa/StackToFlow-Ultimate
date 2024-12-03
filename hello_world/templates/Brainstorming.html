@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstorming App</title>
+</head>
+<body id="braistorming-box">
+    <div>
+    <div id="input-div"><h1>Brainstorming App</h1>
+    <textarea id="user-prompt" placeholder="Descreva sua ideia de projeto aqui..."></textarea>
+    <button onclick="sendPrompt()">Gerar Brainstorm</button>
+    </div>
+    <div id="output-div"><h2>Resultado:</h2>
+    <p id="result"></p>
+    </div>
+    <div>
+</body>
+<script>
+    async function sendPrompt() {
+        const prompt = document.getElementById("user-prompt").value;
+
+        const response = await fetch('/brainstorming/generate/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: `prompt=${encodeURIComponent(prompt)}`
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            document.getElementById("generated-prompt").innerText = data.generated_prompt;
+            document.getElementById("final-output").innerText = data.final_output;
+        } else {
+            alert(data.error || "Erro ao gerar brainstorm.");
+        }
+    }
+</script>
+</html>
