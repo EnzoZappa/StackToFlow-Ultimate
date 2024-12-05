@@ -1,23 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brainstorming App</title>
-</head>
-</head>
-<body id="braistorming-box">
+<div id="bs-fire"> 
+       <button>
+        {% load static %}
+            <img src="{% static 'logo.png' %}" alt="Logo">
+        </button>
+        </div>
+        <div>
+    </div>
+          <div id="sideboard" class="sideboard">
+        <button id="close-sideboard">&times;</button>
+        <div id="sideboard-content">
+           <body id="braistorming-box">
     <div>
     <div id="input-div"><h1>Brainstorming App</h1>
     <textarea id="user-prompt" placeholder="Descreva sua ideia de projeto aqui..."></textarea>
-    <button onclick="sendPrompt()">Gerar Brainstorm</button>
+    <button id="send-prompt"onclick="sendPrompt()">Gerar Brainstorm</button>
     </div>
-    <div id="output-div"><h2>Resultado:</h2>
-    <p id="result"></p>
+    <h2>Resultado:</h2>
+    <div id="output-div">
+    <p id="result">{{data.final_output}}</p>
     </div>
-    <div>
+    </div>
+       
 </body>
-<script>
+
+    </body>
+    <script>
     async function sendPrompt() {
         const prompt = document.getElementById("user-prompt").value;
 
@@ -38,5 +45,20 @@
             alert(data.error || "Erro ao gerar brainstorm.");
         }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const sideboard = document.getElementById("sideboard");
+    const openButton = document.getElementById("bs-fire");
+    const closeButton = document.getElementById("close-sideboard");
+
+    // Open the sidebar when clicking the button
+    openButton.addEventListener("click", () => {
+        sideboard.classList.add("open");
+    });
+
+    // Close the sidebar when clicking the close button
+    closeButton.addEventListener("click", () => {
+        sideboard.classList.remove("open");
+    });
+});
 </script>
-</html>

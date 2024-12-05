@@ -23,7 +23,7 @@ from hello_world import views
 from hello_world.core import views as core_views
 
 urlpatterns = [
-    path("", views.home),
+    path("", views.Home),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
 ]

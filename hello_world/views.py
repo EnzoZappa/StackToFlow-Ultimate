@@ -10,5 +10,5 @@ from django.contrib.auth.models import User  # Default user model
 from django.db.models import Q  # Complex queries
 
 
-def home(request):
-    return render(request, "home.html")
+def Home(request):
+    return render(request, "Main.html", )

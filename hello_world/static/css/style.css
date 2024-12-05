@@ -65,7 +65,26 @@ header {
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
 
 }
-
+#div-main{
+    margin:5%;
+    
+}
+#h1-main{
+    color: #CCCC00;
+    font-size: 75px;
+}
+body p{
+color: #F7F7D4;
+font-size: 20px;
+}
+#ul-main{
+    display:inline;
+    align-content: left;
+}
+.h3-main{
+    color: #CCCC00;
+    font-size: 35px;
+}
 .main-nav ul {
     display: flex;
     list-style: none;
@@ -74,8 +93,7 @@ header {
 }
 
 .main-nav a {
-    color: #F7F7D4
-;
+    color: #F7F7D4;
     text-decoration: none;
     padding: 10px 15px;
     font-size: 1.1em;
