@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <header>
+        <h1>Stick To Flow</h1>
+        <nav>
+            <a href="/">Início</a>
+            <a href="/login/">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Cadastro</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Cadastrar</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2024 Stick To Flow</p>
+    </footer>
+</body>
+</html>
