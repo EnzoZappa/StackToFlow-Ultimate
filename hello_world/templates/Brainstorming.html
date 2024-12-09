@@ -28,7 +28,7 @@
     async function sendPrompt() {
         const prompt = document.getElementById("user-prompt").value;
 
-        const response = await fetch('/brainstorming/generate/', {
+        const response = await fetch('/brainstorming/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

@@ -13,7 +13,7 @@ from django.contrib.auth import login, authenticate, logout  # Funções para au
 
 
 def Home(request):
-    return render(request, "Main.html", )
+    return render(request, "Main.html" )
 
 
 def login_view(request):
