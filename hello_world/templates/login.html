@@ -1,31 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Login</title>
 </head>
 <body>
-    <header>
-        <h1>Stick To Flow</h1>
-        <nav>
-            <a href="/">Início</a>
-            <a href="/signup/">Cadastro</a>
-        </nav>
-    </header>
-
-    <main>
-        <h2>Login</h2>
+    <h1>Login</h1>
+    
+    {% if user.is_authenticated %}
+        <p>Bem-vindo, {{ user.username }}!</p>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Entrar</button>
         </form>
-    </main>
-
-    <footer>
-        <p>© 2024 Stick To Flow</p>
-    </footer>
+    {% endif %}
+    
 </body>
 </html>
+
