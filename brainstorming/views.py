@@ -10,10 +10,10 @@ def brainstorming_view(request):
             return JsonResponse({"error": "Prompt is required"}, status=400)
 
         # Generate optimized prompt
-        optimized_prompt = process_prompt_with_langchain(user_prompt)
+        optimized_prompt = optimize_prompt(user_prompt)
 
         # Get final brainstorming output
-        final_output = run_final_llm_request(optimized_prompt)
+        final_output = run_final(optimized_prompt)
 
         return JsonResponse({
             "optimized_prompt": optimized_prompt,

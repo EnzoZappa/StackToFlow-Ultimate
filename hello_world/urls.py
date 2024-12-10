@@ -20,9 +20,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from hello_world import views
-from hello_world.core import views as core_views
+from hello_world.core import views as core_view
+from brainstorming import views as bviews
 
 urlpatterns = [
+    path("brainstorming/", bviews.brainstorming_view),
     path("", views.Home),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
