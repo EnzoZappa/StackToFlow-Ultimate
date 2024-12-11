@@ -1,0 +1,20 @@
+<!-- tempo/templates/tempo/base.html -->
+{% load static %}
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VastMadeupHypercard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'tempo/style.css' %}">
+</head>
+<body>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
+
+
+
