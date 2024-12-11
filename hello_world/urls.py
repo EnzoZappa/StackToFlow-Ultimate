@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 from hello_world import views
 from hello_world.core import views as core_view
 from brainstorming import views as bviews
+from .views import signup_view, login_view, logout_view
 
 urlpatterns = [
     path("brainstorming/", bviews.brainstorming_view),
@@ -30,6 +31,10 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('accounts/', include('accounts.urls')),
      path('whiteboard/', include('whiteboard.urls')),
+    path('signup/', signup_view, name='signup'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
