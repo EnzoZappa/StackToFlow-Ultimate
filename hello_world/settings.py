@@ -65,6 +65,7 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
+AUTH_USER_MODEL = 'hello_world.user'
 X_FRAME_OPTIONS = "ALLOW-FROM preview.app.github.dev"
 
 ROOT_URLCONF = "hello_world.urls"

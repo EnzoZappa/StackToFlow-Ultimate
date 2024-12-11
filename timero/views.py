@@ -6,7 +6,7 @@ def timer_view(request):
 # tempo/views.py
 
 def cronometro_view(request):
-    return render(request, 'tempo/cronometro.html')
+    return render(request, 'cronometro.html')
 
 # Timer: Variáveis globais para armazenar o tempo restante
 timer_start_time = 0

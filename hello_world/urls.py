@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 from hello_world import views
 from hello_world.core import views as core_view
 from brainstorming import views as bviews
-from .views import signup_view, login_view, logout_view
+from accounts import views as aviews
+from timero import views as tviews
 
 urlpatterns = [
     path("brainstorming/", bviews.brainstorming_view),
@@ -31,9 +32,14 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('accounts/', include('accounts.urls')),
      path('whiteboard/', include('whiteboard.urls')),
-    path('signup/', signup_view, name='signup'),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
+    path('signup/', aviews.signup_view, name='signup'),
+    path('login/', aviews.login_view, name='login'),
+    path('logout/', aviews.logout_view, name='logout'),
+     path('start_timer/', tviews.start_timer, name='start_timer'),
+    path('stop_timer/', tviews.stop_timer, name='stop_timer'),
+    path('reset_timer/', tviews.reset_timer, name='reset_timer'),
+    path('timer_view/', tviews.timer_view, name='timer_view'),
+    path('cronometro_view/', tviews.cronometro_view, name='cronometro_view'),
     
 ]
 if settings.DEBUG:

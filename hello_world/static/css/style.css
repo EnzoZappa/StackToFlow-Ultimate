@@ -243,3 +243,26 @@ height: auto;
     transform: translateY(4px);}
 
 /*white board*/
+
+
+/*timer*/
+.popdownc {
+    top: -100%;
+    background-color: #fff;
+}
+#popdown {
+    background-color: black;
+    height: 200px;
+
+    
+   
+    right: 600px;
+    
+  
+}
+#popdown :hover{
+    cursor:pointer;
+}
+.popdownc.open {
+    top: 200px;
+}
