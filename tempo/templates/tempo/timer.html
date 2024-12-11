@@ -1,0 +1,41 @@
+{% extends 'tempo/base.html' %}
+
+{% block title %}Timer{% endblock %}
+
+{% block content %}
+    <h2>Timer</h2>
+    <div id="timer-display">00:00</div>
+    <button id="start-timer">Iniciar</button>
+    <button id="pause-timer">Pausar</button>
+    <button id="reset-timer">Zerar</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let timerInterval;
+            let timerTime = 0;
+            let isRunning = false;
+
+            document.getElementById('start-timer').addEventListener('click', () => {
+                if (isRunning) return;
+                isRunning = true;
+                timerInterval = setInterval(() => {
+                    timerTime++;
+                    document.getElementById('timer-display').textContent = 
+                        new Date(timerTime * 1000).toISOString().substr(14, 5);
+                }, 1000);
+            });
+
+            document.getElementById('pause-timer').addEventListener('click', () => {
+                clearInterval(timerInterval);
+                isRunning = false;
+            });
+
+            document.getElementById('reset-timer').addEventListener('click', () => {
+                clearInterval(timerInterval);
+                timerTime = 0;
+                isRunning = false;
+                document.getElementById('timer-display').textContent = "00:00";
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'tempo/base.html' %}
+
+{% block title %}Cronômetro{% endblock %}
+
+{% block content %}
+    <h2>Cronômetro</h2>
+    <div id="cronometro-display">00:00</div>
+    <button id="start-cronometro">Iniciar</button>
+    <button id="pause-cronometro">Pausar</button>
+    <button id="reset-cronometro">Zerar</button>  <!-- O botão de zerar está aqui -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let cronometroInterval;
+            let cronometroTime = 0;
+            let isRunning = false;
+
+            // Iniciar o cronômetro
+            document.getElementById('start-cronometro').addEventListener('click', () => {
+                if (isRunning) return; // Impede múltiplos intervalos
+                isRunning = true;
+                cronometroInterval = setInterval(() => {
+                    cronometroTime++;
+                    document.getElementById('cronometro-display').textContent = 
+                        new Date(cronometroTime * 1000).toISOString().substr(14, 5);
+                }, 1000);
+            });
+
+            // Pausar o cronômetro
+            document.getElementById('pause-cronometro').addEventListener('click', () => {
+                clearInterval(cronometroInterval);
+                isRunning = false;
+            });
+
+            // Zerar o cronômetro
+            document.getElementById('reset-cronometro').addEventListener('click', () => {
+                clearInterval(cronometroInterval);
+                cronometroTime = 0;
+                isRunning = false;
+                document.getElementById('cronometro-display').textContent = "00:00";
+            });
+        });
+    </script>
+{% endblock %}

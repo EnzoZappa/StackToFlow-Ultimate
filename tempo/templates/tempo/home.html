@@ -1,0 +1,80 @@
+{% extends 'tempo/base.html' %}
+
+{% block content %}
+<h2>Bem-vindo ao Gerenciador de Tempo</h2>
+
+<!-- Timer -->
+<div>
+    <h3>Timer</h3>
+    <form method="POST" action="{% url 'start_timer' %}">
+        {% csrf_token %}
+        <label for="timer_duration">Duração (em minutos):</label>
+        <input type="number" id="timer_duration" name="duration" required>
+    </form>
+
+    <div id="timer_status">
+        <p>Timer: <span id="timer_time_display">{{ timer_time|default:0 }}</span> segundos restantes.</p>
+        <button id="start_timer">Iniciar</button>
+        <button id="stop_timer">Parar</button>
+    </div>
+</div>
+
+<!-- Cronômetro -->
+<div>
+    <h3>Cronômetro</h3>
+    <button id="start_stopwatch">Iniciar Cronômetro</button>
+    <button id="stop_stopwatch">Parar Cronômetro</button>
+    <p>Tempo decorrido: <span id="stopwatch_time">0</span> segundos</p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Cronômetro
+        let stopwatchInterval;
+        let stopwatchTime = 0;
+
+        function startStopwatch() {
+            document.getElementById('start_stopwatch').disabled = true;
+            stopwatchInterval = setInterval(() => {
+                stopwatchTime++;
+                document.getElementById('stopwatch_time').textContent = stopwatchTime;
+            }, 1000);
+        }
+
+        function stopStopwatch() {
+            clearInterval(stopwatchInterval);
+            document.getElementById('start_stopwatch').disabled = false;
+        }
+
+        document.getElementById('start_stopwatch').addEventListener('click', startStopwatch);
+        document.getElementById('stop_stopwatch').addEventListener('click', stopStopwatch);
+
+        // Timer
+        let timerInterval;
+        let remainingTime = {{ timer_time|default:0 }};
+
+        function startTimer() {
+            let timerValue = document.getElementById('timer_duration').value;
+            remainingTime = timerValue * 60; // Converter para segundos
+            document.getElementById('start_timer').disabled = true;
+            timerInterval = setInterval(() => {
+                remainingTime--;
+                document.getElementById('timer_time_display').textContent = remainingTime;
+                if (remainingTime <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Timer finalizado!");
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('start_timer').disabled = false;
+            alert("Timer parado.");
+        }
+
+        document.getElementById('start_timer').addEventListener('click', startTimer);
+        document.getElementById('stop_timer').addEventListener('click', stopTimer);
+    });
+</script>
+{% endblock %}
